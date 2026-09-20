@@ -145,6 +145,10 @@ a.脚本介绍
     - 写入前自动备份固件
     - 写入前校验固件完整性（防止选错文件）
 
+
+https://github.com/user-attachments/assets/f5662530-6eed-4e36-8956-26319905494d
+
+
     ## 环境要求
 
     ```bash
@@ -400,7 +404,11 @@ b.脚本内容
                 print(f"  帧 {frame:02d}: 写入偏移 0x{off:x}")
 
         print(f"\n✅ 完成！已替换帧 {start_f}~{end_f}")
-        print("   现在可以刷入设备测试")
+        print("   现在可以刷入设备测
+
+https://github.com/user-attachments/assets/e26a806a-4399-4665-ac7a-c6f48a8d72b4
+
+试")
 
   c.命令行成品脚本
     分为6、14、27、40
