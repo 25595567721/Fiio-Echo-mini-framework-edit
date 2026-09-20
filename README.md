@@ -126,7 +126,7 @@ Z_POWERON0 起始位置：BASE + 0x6930 = 0x9BCD12 + 0x6930 = 0x9C4642
 
 ### 动画替换
     涉及内容位于/workspaces/Fiio-Echo-mini-framework-edit/startup-change
-a.脚本介绍
+<p align="center">a.脚本介绍</p>
     
     [Uploading readm# Echo Mini 开机 Logo 替换工具
     replace-startup.py
@@ -148,7 +148,7 @@ a.脚本介绍
 
 https://github.com/user-attachments/assets/f5662530-6eed-4e36-8956-26319905494d
     
-! !图片要求!!
+<p align="center">!!图片要求!!</p>
 
     | 项目 | 说明 |
     |------|------|
@@ -158,7 +158,7 @@ https://github.com/user-attachments/assets/f5662530-6eed-4e36-8956-26319905494d
     | 格式 | RGB888 → RGB565 转换过程中会损失少量色阶精度（正常现象，渐变可能有轻微色带） |
 
 
-!!环境要求!!
+<p align="center">!!环境要求!!</p>
 
     ```bash
     pip install pillow
@@ -170,7 +170,7 @@ https://github.com/user-attachments/assets/f5662530-6eed-4e36-8956-26319905494d
     - 安卓手机可用普通python编译器运行
 
 
- 工作原理
+ <p align="center">工作原理</p>
 
     ```
     固件镜像 (HIFIEC39.IMG)
@@ -190,7 +190,7 @@ https://github.com/user-attachments/assets/f5662530-6eed-4e36-8956-26319905494d
         最终文件保存到当前目录下[固件文件名].IMG
 
 
-!!使用方法!!
+<p align="center">!!使用方法!!</p>
 
     将脚本放在固件镜像同目录下运行。
 
@@ -221,7 +221,7 @@ https://github.com/user-attachments/assets/f5662530-6eed-4e36-8956-26319905494d
     ```
 
 
-帧选择指南
+<p align="center">帧选择指南</p>
 
     经过差分分析，V3.9.0 固件的 40 帧开机动画分为几个阶段：
 
@@ -242,7 +242,7 @@ https://github.com/user-attachments/assets/f5662530-6eed-4e36-8956-26319905494d
 
 
 
-!!文件说明!!
+<p align="center">!!文件说明!!</p>
 
     运行后会生成：
 
@@ -251,7 +251,7 @@ https://github.com/user-attachments/assets/f5662530-6eed-4e36-8956-26319905494d
     固件文件名.IMG.backup   # 自动备份（首次运行时创建，之后跳过）
     ```
 
-常见问题
+<p align="center">常见问题</p>
 
     **Q: 刷入后 Logo 颜色偏色/花屏？**
     A: 本固件为小端 RGB565，脚本已按此处理。若出现颜色异常，请确认修改的是正确的帧号，且图片本身是正常显示的。
@@ -265,7 +265,7 @@ https://github.com/user-attachments/assets/f5662530-6eed-4e36-8956-26319905494d
     **Q: 可以改关机画面 / UI 界面吗？**
     A: 可以。同一资源区内还有 `POWEROFF0`（关机画面）、`MAINMENUPAGE10~50`（主菜单）、`MUSIC_BACKGROUND`（播放界面）等资源，结构和开机帧完全相同，改脚本中的帧定位参数即可。不同主题的同类资源带 `B`/`C_`/`D_`/`E_` 前缀。
 
-固件兼容性
+<p align="center">固件兼容性</p>
 
     - 分析基于 **V3.9.0 (HIFIEC39.IMG)**，偏移地址写死在该版本
     - 其他版本固件偏移可能不同，需重新分析后修改脚本中的 `BASE` 和 `FRAME_START_ABS`
@@ -403,11 +403,10 @@ b.脚本内容
         
         分为6、14、27、40
     
-内含b.中[replacce_startup.py]与shell脚本replace_().sh
-运行shell脚本后，shell脚本会自动识别当前目录内的[replacce_startup.py]、图片文件夹[png/jpg]、名为[echo.img]的镜像文件
-在对应文件夹内的png或jpg文件夹放入图片并按数字大小排序（数字可以不连续，不从1开始）
-    
-需将固件更名为echo.img.
+内含b.中[replacce_startup.py]与shell脚本replace_().sh\
+运行shell脚本后，shell脚本会自动识别当前目录内的[replacce_startup.py]、图片文件夹[png/jpg]、名为[echo.img]的镜像文件\
+在对应文件夹内的png或jpg文件夹放入图片并按数字大小排序（数字可以不连续，不从1开始）\
+需将固件更名为echo.img.\
 在脚本运行完后将echo.img改回原文件名，如HIFIEC39.img
     
     [40的不知道为什么，如果第一张不是纯黑就没成功烧录，所以我就内置了01，这样就保证了第一张一定是黑色，而且如果你的图   片里有1.png/jpg也可以正常使用]
