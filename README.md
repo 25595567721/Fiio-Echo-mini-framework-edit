@@ -1,9 +1,9 @@
-# Fiio-Echo-mini-framework-edit
-    
+ 
 仅用于个人学习，对于Fiio一款ECHO mini播放器固件修改的研究。其中内容大多来自AI，侵权请联系\
 本项目内容目前大多针对linux\
 内容仍会更新\
-本项目中研究固件为echo mini v3.9.0 8g版本（HIFIEC39.IMG），其余版本的文件在大多区域类似，但目前并未研究
+本项目中研究固件为echo mini v3.9.0 8g版本（HIFIEC39.IMG），其余版本的文件在大多区域类似，哪怕有不同也大概率不会影响到本文所提脚本的使用，但目前并未研究
+### 所有涉及图片的脚本在准备图片时都不需要考虑分辨率，脚本会自己调。只需要确保图片比例不要太离谱，因为脚本会强制拉伸图片到320x170
     
     固件命名规则：
     HIFIEC[8G或4G版]/MINIV[512MB版] + 39/390[版本号，此处代指3.9版本]
@@ -41,7 +41,14 @@ img镜像据此拆分为bin,位于img-out
 5 套主题资源（前缀不同，后3套是 D/E 重复）：
 <img width="816" height="255" alt="dms-screenshot-1789841125974" src="https://github.com/user-attachments/assets/9fc42012-f005-41c4-8bf6-502665cf6318" />
 
-# 镜像修改
+<img width="744" height="345" alt="dms-screenshot-1789908599918" src="https://github.com/user-attachments/assets/5354cf8b-6d94-4e3e-a3f9-b7a50ae56f39" />
+
+G中内容位开机动画
+A、B、C、D、E为5套主题文件
+
+
+
+<p align="center"># 镜像修改</p>
 ### 要求
 1.已安装python工具
 
@@ -53,8 +60,8 @@ windows随便找个应用商店吧，我懒得打字<img width="41" height="40" 
 
 
 
-## 开机动画
-### 基础信息
+# 开机动画
+## 基础信息
 屏幕：320×170 横屏\
 像素格式：RGB565（2 字节/像素）\
 每帧大小：320 × 170 × 2 = 108,800 字节（0x1A900）\
@@ -125,7 +132,7 @@ Z_POWERON0 起始位置：BASE + 0x6930 = 0x9BCD12 + 0x6930 = 0x9C4642
 运行python脚本
 
 
-### 动画替换
+## 动画替换
     涉及内容位于/workspaces/Fiio-Echo-mini-framework-edit/startup-change
 <p align="center">a.脚本介绍</p>
     
@@ -413,6 +420,102 @@ b.脚本内容
     [40的不知道为什么，如果第一张不是纯黑就没成功烧录，所以我就内置了01，这样就保证了第一张一定是黑色，而且如果你的图   片里有1.png/jpg也可以正常使用]
 
 
+# 主题图片替换
+##思路介绍
+
+ FIIO ECHO MINI的交互完全由图片变换完成\
+ 例如在A主题下在主页时选框向左侧移动是由以下三张图片交替变换\
+<img width="320" height="170" alt="0069_MAINMENUPAGE10" src="https://github.com/user-attachments/assets/f49a1bb6-0763-4afb-b172-af46830705f3" />
+<img width="320" height="170" alt="0070_MAINMENUPAGE20" src="https://github.com/user-attachments/assets/c56eaf0f-c696-48f2-9a61-0ba60ef77eca" />
+<img width="320" height="170" alt="0071_MAINMENUPAGE30" src="https://github.com/user-attachments/assets/fc6713d9-1850-450a-97e7-c52daa7b1b6c" />\
+这使得主页主题的动画修改的开放度极其高
+    
+    举个例子，
+    你甚至可以将选框位于文件目录（最左侧）的屏幕显示内容改成一棵树
+    也可以将选框位于设置上时的屏幕显示内容改成<浅红法务部合影>，就像下面这个视频
+
+https://github.com/user-attachments/assets/df5270fa-9793-4a41-b6df-37731d840c67
+
+但代价是什么呢，你如果只想做个正儿八经的ui,工作量可能很大\
+你可以用ai绘制一套，也可以在网上找别人的图片
+
+
+
+
+## 替换工具   
+theme_replace.py
+        
+该脚本不仅完美支持上文中开机动画脚本[replace_startup.py]的指令\
+也可用于替换ABCDE主题中图片
+
+                上文中[命令行成品脚本]运行的是[replace_startup.py]，但若将[theme_replace.py]直接更名为[replace_startup.py]，并替换[replace_startup.py]也可正常使用
+
+<p align="center">!!使用方法!!</p>\
+<p align="center">涉及脚本太大，不在此展示内容</p>
+
+
+### 先使用[theme_extract.py]提取img镜像中所有数据，将保存到当前目录下到[theme_dump]文件夹
+    
+    python3 theme_extract.py [镜像文件名].IMG
+
+输出目录结构：
+    
+        theme_dump/
+        ├── G/                 # 全局共享（开机/关机/充电画面，67项）
+        │   ├── 0000_POWERON0.png       # 开机静态帧1（黑屏，勿改！）
+        │   ├── 0001_POWERON1.png       # 开机静态帧2
+        │   ├── 0002_Z_POWERON0.png     # 开机动画帧0
+        │   ├── ...
+        │   ├── 0042_POWEROFF0.png      # 关机画面（静态）
+        │   └── ...
+        ├── A/                 # 主题 A（默认）
+        │   ├── 0067_ATSTYLE.png        # 主题分界标记（无实际图像）
+        │   ├── 0069_MAINMENUPAGE10.png # 主菜单第1页
+        │   ├── 0079_MUSIC_BACKGROUND.png  # 播放界面背景
+        │   └── ...
+        ├── B/                 # 主题 B（深色？）
+        ├── C/                 # 主题 C
+        ├── D/                 # 主题 D
+        ├── E/                 # 主题 E（310项）
+        ├── manifest.json      # 资源数据库（替换脚本读取）
+        └── resources.tsv      # 可 grep 的文本清单
+
+关键数据：
+
+每套主题恰好 310 个资源\
+全局区（G）67 个资源包含开机/关机/充电画面\
+名称带 .BMP 后缀的为残片（suspect 标记），建议用序号 #N 定位
+
+### 使用[theme_replace.py]替换主题图片
+<p align="center">资源名参考图</p>
+<img width="1071" height="495" alt="dms-screenshot-1789910224448" src="https://github.com/user-attachments/assets/b39d7a6a-f3bb-4ad8-ae84-553b794fd6d6" />
+使用方法
+
+      python3 theme_replace.py <固件> <资源名> <png>          # 精确名，所有匹配项
+      python3 theme_replace.py <固件> A:<资源名> <png>        # 只换A主题
+      python3 theme_replace.py <固件> ALL:<资源名> <png>      # 5套主题全部换
+      实例:
+    python3 theme_replace.py HIFIEC39.IMG ALL:MUSIC_BACKGROUND bg.png
+若部分资源未出现在资源\
+可尝试查询资源获取<序号>来代替资源名
+  
+       python3 theme_replace.py <固件> "#<序号>" <png>         # 按条目序号
+       实例：
+       python3 theme_replace.py echo.img "#72" replace-png/blue.jpg
+
+查询资源
+
+    # 查看所有主菜单背景
+    grep -i "mainmenu" theme_dump/resources.tsv
+
+    # 查看 A 主题的播放界面背景
+    grep -P "\tA\t" theme_dump/resources.tsv | grep "MUSIC_BACKGROUND"
+
+    # 按序号查看特定资源
+    python3 -c "import json; m=json.load(open('theme_dump/manifest.json')); [print(e) for e in m if e['index']==79]"
+
+
+  
 
 
 
