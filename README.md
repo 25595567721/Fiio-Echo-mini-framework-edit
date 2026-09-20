@@ -124,6 +124,7 @@ Z_POWERON0 起始位置：BASE + 0x6930 = 0x9BCD12 + 0x6930 = 0x9C4642
 
 
 ### 动画替换
+    涉及内容位于/workspaces/Fiio-Echo-mini-framework-edit/startup-change
 a.脚本介绍
     
     [Uploading readm# Echo Mini 开机 Logo 替换工具
