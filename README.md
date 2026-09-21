@@ -72,17 +72,20 @@ windows随便找个应用商店吧，我懒得打字<img width="41" height="40" 
 
 
 <p align="center">#快速开始</p>
-1. 提取资源（必做）
+## 1. 提取资源（必做）
 python3 theme_extract.py HIFIEC39.IMG
 输出：
 
-theme_dump/ 按主题（G/A/B/C/D/E）分类的 PNG 图片
-manifest.json 资源数据库（替换脚本读取）
-resources.tsv 可检索的文本清单
-命名规则（v2.0 关键）：
+    theme_dump/ 按主题（G/A/B/C/D/E）分类的 PNG 图片
+				manifest.json 资源数据库（替换脚本读取）
+    resources.tsv 可检索的文本清单
+提取出的内容命名规则（v2.0 关键）：
 
 文件名 = <主题>_<主题内序号>_<名称>.png
-同一序号 = 同一角色：A_0012 / B_0012 / C_0012 都是各自主题的"播放背景"
+同一序号 = 同一角色
+     
+     A_0012 / B_0012 / C_0012 都是各自主题的"播放背景"
+
 全局区（G）：开机/关机/充电画面（#0~#66）
 2. 查找资源
 # 列出 A 主题所有资源及序号
