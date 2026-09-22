@@ -56,6 +56,30 @@ A、B、C、D、E为5套主题文件
 
 
 
+## 5.思路介绍
+
+ FIIO ECHO MINI的交互完全由图片变换完成\
+ 例如在A主题下在主页时选框向左侧移动是由以下三张图片交替变换\
+<img width="320" height="170" alt="0069_MAINMENUPAGE10" src="https://github.com/user-attachments/assets/f49a1bb6-0763-4afb-b172-af46830705f3" />
+<img width="320" height="170" alt="0070_MAINMENUPAGE20" src="https://github.com/user-attachments/assets/c56eaf0f-c696-48f2-9a61-0ba60ef77eca" />
+<img width="320" height="170" alt="0071_MAINMENUPAGE30" src="https://github.com/user-attachments/assets/fc6713d9-1850-450a-97e7-c52daa7b1b6c" />\
+这使得主页主题的动画修改的开放度极其高
+    
+    举个例子，
+    你甚至可以将选框位于文件目录（最左侧）的屏幕显示内容改成一棵树
+    也可以将选框位于设置上时的屏幕显示内容改成<浅红法务部合影>，就像下面这个视频
+
+https://github.com/user-attachments/assets/df5270fa-9793-4a41-b6df-37731d840c67
+
+但代价是什么呢，你如果只想做个正儿八经的ui,工作量可能很大\
+你可以用ai绘制一套，也可以在网上找别人的图片
+
+
+
+
+
+
+
 # <p align="center">快速开始</p>
 
 	涉及文件均位于[theme_edit]文件夹
