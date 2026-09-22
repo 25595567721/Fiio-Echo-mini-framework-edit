@@ -63,7 +63,7 @@ A、B、C、D、E为5套主题文件
 
 # 1. 提取资源（必做）
 python3 theme_extract.py HIFIEC39.IMG\
-输出：\
+输出：
 
     theme_dump/ 按主题（G/A/B/C/D/E）分类的 PNG 图片
 				manifest.json 资源数据库（替换脚本读取）
@@ -84,7 +84,7 @@ G：开机/关机/充电画面（#0~#66）
 建议直接打开文件管理器预览图片确定资源名或序号\
 比如你要修改在主界面时，选项位于设置的图片\
 你就直接看文件名的资源名和数字序号\
-<img width="318" height="278" alt="dms-screenshot-1789984088922" src="https://github.com/user-attachments/assets/999d5965-dfd9-4439-87e4-fc2b8fe408e3" />
+<img width="318" height="278" alt="dms-screenshot-1789984088922" src="https://github.com/user-attachments/assets/999d5965-dfd9-4439-87e4-fc2b8fe408e3" />\
 此处数字序号是0002或2，资源名是MAINMENUPAGE10
 
 ## B.脚本指令查找
@@ -157,9 +157,9 @@ G：开机/关机/充电画面（#0~#66）
 未提供的序号保留固件原样，不会破坏主题完整性
 
 
-*****高级功能*****
+*****高级功能*****\
 文件名标记来设置导入参数（v2.2+）\
-在文件名里加入标记，实现单图独立控制适配方式、缩放和位移。\
+在文件名里加入标记，实现单图独立控制适配方式、缩放和位移。
 
 1. 适配方式标记（fit）
 
@@ -199,7 +199,8 @@ G：开机/关机/充电画面（#0~#66）
 
 	
 4. 组合使用
-   
+
+
 		A_0012_fit2_s_l10.png     # 解析为：序号 12，fit2，0.5 倍，左移 10
 		0045_battery-fit3-r5.png  # 解析为：序号 45，fit3，右移 5
 
@@ -280,7 +281,7 @@ python3 theme_extract.py HIFIEC39.IMG
 
 ## 2. 准备资源
 
-a.网上搜集、ai生成、自己绘制等方式获取图片\
+a.网上搜集、ai生成、自己绘制等方式获取图片
 
 b.创建文件夹(可用图形化软件操作)
 	
@@ -307,17 +308,17 @@ c.放入准备的图片并修改为对应序号(可用图形化软件操作)
 
 ### 故障排除
 Q: 提示 KeyError: 'local'\
-A: manifest.json 是旧版。重跑 python3 theme_extract.py --manifest-only，或 v2.3 已自动兼容，忽略警告即可。\
+A: manifest.json 是旧版。重跑 python3 theme_extract.py --manifest-only，或 v2.3 已自动兼容，忽略警告即可。
 
 
 Q: 图片显示模糊/变形\
-A: 默认 stretch 会拉伸。小图标（如 19×12 电池）建议按原尺寸作图，或改用 fit2（等比留边）。\
+A: 默认 stretch 会拉伸。小图标（如 19×12 电池）建议按原尺寸作图，或改用 fit2（等比留边）。
 
 Q: 主题包里有的文件没生效\
-A: 检查文件名里有没有数字，序号是否在 0~309 范围，主题字母是否匹配（A_12.png 只能导入 A 主题，要导入 B 需改名 B_12.png 或加 --force）。\
+A: 检查文件名里有没有数字，序号是否在 0~309 范围，主题字母是否匹配（A_12.png 只能导入 A 主题，要导入 B 需改名 B_12.png 或加 --force）。
 
 Q: 找不到匹配资源\
-A: 先跑 python3 theme_extract.py --manifest-only 更新清单，或用 --list 确认名称拼写。\
+A: 先跑 python3 theme_extract.py --manifest-only 更新清单，或用 --list 确认名称拼写。
 
 ### 文件说明
 
